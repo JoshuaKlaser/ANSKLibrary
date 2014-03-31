@@ -1,0 +1,2 @@
+Content\CubeTest.xnb
+Content\Effects\AnimatableModel.xnb
