@@ -8,6 +8,7 @@ In order to use the library, you do as followed (This will update if anything ch
 XNA Visual Studio 2010:
 
 -- Referencing the libraries --
+
 1. Download/Pull the files found on this repository.
 2. Within the folder 'ANSKLibrary/AnimationExample', copy the folders 'ModelAnimationLibrary' and 'ModelAnimationPipeline', and paste them in a desired location.
 3. If you wish to edit the source code or use the source project in your own project, follow step 4. Otherwise move to step 5.
@@ -18,6 +19,7 @@ XNA Visual Studio 2010:
 8. Your project now has the library linked, set up and ready to use.
 
 -- Using the libraries --
+
 1. In order to use this library you need to have a 3D animated model that you need to use. You will find the page '3D Animated Model Setup' page in the wiki if you do not know how to provide this type of model.
 2. Add the .fbx file into the content project as you would any other piece of content.
 3. In the content file properties which appear on the right underneath the 'solution explorer' (if you can't see this, then click on your .fbx file in the 'solution explorer' and press alt + enter on your keyboard to bring it up), change the 'Content Importer' option to 'Model Animation Importer' and change the 'Content Processor' option to 'ModelAnimationProcessor' (If these options do not show, then check to see if you have referenced the 'ModelAnimationPipeline' and rebuild/clean the project to refresh it).
