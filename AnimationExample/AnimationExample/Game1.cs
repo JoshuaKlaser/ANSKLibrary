@@ -25,6 +25,7 @@ namespace AnimationExample
         private Camera _camera;
         private ANSKTest _test;
         private ANSKModel _model;
+        private Matrix world, view, proj, _modelTrans;
 
         public Game1()
         {
@@ -43,24 +44,33 @@ namespace AnimationExample
             LocalPlayerRegistry.InitialisePlayer(PlayerIndex.One);
             // TODO: Add your initialization logic here
             _inputManager = new Input(this);
-            _inputManager.AddCommandToCheckKeyboard(Keys.W, Keys.A, Keys.S, Keys.D);
+            _inputManager.AddCommandToCheckKeyboard(Keys.W, Keys.A, Keys.S, Keys.D, Keys.Q, Keys.E);
             _inputs = _inputManager.RetrieveInputContainer;
 
-            _test = new ANSKTest(this, Vector3.Zero, 3, Content.Load<ANSKModelContent>("CubeTest"));
+            //_test = new ANSKTest(this, Vector3.Zero, 3, Content.Load<ANSKModelContent>("CubeTest"));
 
-            _test._model.PlayAnimation("One");
-            _test._model.PauseAnimation();
+            //_test._model.PlayAnimation("One");
+            //_test._model.PauseAnimation();
 
-            _camera = new Camera(this, Vector3.Backward * 15, Vector3.Forward, Vector3.Up);
-            _camera.Target = _test;
+            //_camera = new Camera(this, Vector3.Backward * 15, Vector3.Forward, Vector3.Up);
+            _camera = new Camera(this, Vector3.Backward * 20, Vector3.Forward, Vector3.Up);
+            _camera.Target = new GameObject(this, Matrix.Identity.Translation);
+            //_camera.TargetPos = Matrix.Identity.Translation;
+            //_camera.Target = _test;
             _camera.TargetSpecified = true;
 
             _model = new ANSKModel(Content.Load<ANSKModelContent>("CubeTest"));
             _model.ManualInitialise(GraphicsDevice, Content.Load<Effect>("Effects/AnimatableModel"), this);
+            _model.PlayAnimation("One");
             //_camera.Translate(Vector3.Left * 15);
             //_camera.Translate(Vector3.Forward * 15);
 
             //_model = Content.Load<ANSKModel>("CubeTest");
+            world = Matrix.CreateTranslation(0, 0, 0);
+            view = Matrix.CreateLookAt(new Vector3(0, 0, 3), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
+            proj = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 800f / 480f, 0.01f, 100f);
+
+            _modelTrans = Matrix.CreateTranslation(Vector3.Zero);// *Matrix.CreateScale(50);
 
             base.Initialize();
         }
@@ -101,15 +111,32 @@ namespace AnimationExample
 
             _camera.Update(gameTime);
 
-            _test.Update(gameTime);
+            //_test.Update(gameTime);
 
             // Please use _inputs for checking inputs.
 
-            if (_inputs.IsFirstPressed(Keys.W))
-                _test._model.PlayAnimation("One");
+            if (_inputs[Keys.W])
+                _modelTrans *= Matrix.CreateTranslation(0, 0, 0.5f);
+            else if (_inputs[Keys.S])
+                _modelTrans *= Matrix.CreateTranslation(0, 0, -0.5f);
+            if (_inputs[Keys.A])
+                _modelTrans *= Matrix.CreateRotationY(MathHelper.ToRadians(2));
+            //_modelTrans *= Matrix.CreateTranslation(-0.5f, 0, 0f);
+            else if (_inputs[Keys.D])
+                _modelTrans *= Matrix.CreateRotationY(MathHelper.ToRadians(-2));
+                //_modelTrans *= Matrix.CreateTranslation(0.5f, 0, 0.5f);
+            if (_inputs.IsFirstPressed(Keys.E))
+                _model.PlayAnimation("One");
+            else if (_inputs.IsFirstPressed(Keys.Q))
+                _model.PlayAnimation("Two");
 
-            if (_inputs.IsFirstPressed(Keys.S))
-                _test._model.PlayAnimation("Two");
+            //if (_inputs.IsFirstPressed(Keys.W))
+                //_test._model.PlayAnimation("One");
+
+            //if (_inputs.IsFirstPressed(Keys.S))
+                //_test._model.PlayAnimation("Two");
+
+            _model.Update(gameTime, _modelTrans);
 
             // Blend shapes are buggy and don't work.
             //if (_inputs.IsFirstPressed(Keys.A))
@@ -130,7 +157,8 @@ namespace AnimationExample
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            _model.Draw(gameTime, Matrix.Identity);
+            _model.Draw(gameTime, Matrix.Identity, _camera.View, _camera.Projection);
+            //_model.Draw(gameTime, world, view, proj);
             //_test.Draw(gameTime, _camera);
             // TODO: Add your drawing code here
 

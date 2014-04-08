@@ -23,9 +23,11 @@ namespace ModelAnimationLibrary
         [ContentSerializer]
         public List<Vector3> Normals { get; set; }
         [ContentSerializer]
+        public Skeleton Joints { get; set; }
+        [ContentSerializer]
         public ANSKTagData TagData { get; set; }
 
-        public ANSKModelContent(List<Vector3> verts, List<int> vertInd, List<Vector2> uv, List<int> uvInd, List<int> edges, List<Vector3> normals, ANSKTagData tagData)
+        public ANSKModelContent(List<Vector3> verts, List<int> vertInd, List<Vector2> uv, List<int> uvInd, List<int> edges, List<Vector3> normals, Skeleton joints, ANSKTagData tagData)
         {
             Verticies = verts;
             VertexIndicies = vertInd;
@@ -33,6 +35,7 @@ namespace ModelAnimationLibrary
             UvIndicies = uvInd;
             Edges = edges;
             Normals = normals;
+            Joints = joints;
             TagData = tagData;
         }
 

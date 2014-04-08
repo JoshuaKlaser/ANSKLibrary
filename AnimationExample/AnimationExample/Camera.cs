@@ -30,7 +30,7 @@ namespace ProjectSneakyGame
         protected bool _controlOverride;
 
         public GameObject Target { get { return _target; } set { _target = value; } }
-        public Vector3 TargetPos { get { return _targetPos; } }
+        public Vector3 TargetPos { get { return _targetPos; } set { _targetPos = value; } }
         public Vector3 Up { get { return _up; } set { _up = value; } }
         public Matrix View { get { return _view; } set { _view = value; } }
         public Matrix Projection { get { return _projection; } set { _projection = value; } }

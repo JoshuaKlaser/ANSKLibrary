@@ -105,6 +105,7 @@
     <Compile Include="ANSKTagData.cs" />
     <Compile Include="ANSKVertexDeclaration.cs" />
     <Compile Include="BlendShape.cs" />
+    <Compile Include="DebugShapeRenderer.cs" />
     <Compile Include="ShaderVars\float4.cs" />
     <Compile Include="ShaderVars\int4.cs" />
     <Compile Include="Joint.cs" />

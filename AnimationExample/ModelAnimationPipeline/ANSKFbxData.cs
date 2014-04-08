@@ -78,6 +78,7 @@ namespace ModelAnimationPipeline
                             
                             if (con2 != null)
                             {
+                                //System.Diagnostics.Debugger.Launch();
                                 int parentId = FindParentOfJoint(jointTypes[q].ID, jointTypes);
                                 skele.AddJoint(new Joint(jointTypes[q].Name, jointTypes[q].ID, parentId, jointTypes[q].PropertyType.Translation,
                                     jointTypes[q].PropertyType.Rotation, jointTypes[q].PropertyType.Scale, deformTypes[w].Indicies, deformTypes[w].PropertyType.Weights));

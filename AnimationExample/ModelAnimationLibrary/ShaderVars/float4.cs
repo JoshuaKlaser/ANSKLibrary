@@ -17,6 +17,14 @@ namespace ModelAnimationLibrary
             _num4 = -1;
         }*/
 
+        public void Init()
+        {
+            _num1 = -1;
+            _num2 = -1;
+            _num3 = -1;
+            _num4 = -1;
+        }
+
         public float4(float num1, float num2, float num3, float num4)
         {
             _num1 = num1;

@@ -42,3 +42,11 @@ C:\Users\Joshua\Desktop\Uni\Graphics Project\Projects\AnimationExample\ModelAnim
 C:\Users\Joshua\Desktop\Uni\Graphics Project\Projects\AnimationExample\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.csprojResolveAssemblyReference.cache
 C:\Users\Joshua\Desktop\Uni\Graphics Project\Projects\AnimationExample\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.dll
 C:\Users\Joshua\Desktop\Uni\Graphics Project\Projects\AnimationExample\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.pdb
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationPipeline.dll
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationPipeline.pdb
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationPipeline\bin\x86\Debug\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationLibrary.dll
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationLibrary.pdb
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.csprojResolveAssemblyReference.cache
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.dll
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.pdb

@@ -45,6 +45,8 @@ namespace ModelAnimationPipeline
             //ModelProcessor p = new ModelProcessor();
             ModelAnimationProcessorProcess p = new ModelAnimationProcessorProcess();
 
+            Skeleton skele = input.ANSKData.CollectSkeleton();
+
             ANSKTagData tag = p.Process(input.NodeContent, context);
 
             if (_scanBlendShapes == ANSKBlendShapeImportOptions.All)
@@ -52,7 +54,7 @@ namespace ModelAnimationPipeline
             else if (_scanBlendShapes == ANSKBlendShapeImportOptions.Keyworded)
                 tag.BlendShapes = input.ANSKData.CollectBlendShapes(true);
 
-            Skeleton skele = input.ANSKData.CollectSkeleton();
+            List<int> xnaIndList = new List<int>();
 
             for (int i = 0; i < input.ANSKData.Properties.Count; i++)
             {
@@ -68,15 +70,27 @@ namespace ModelAnimationPipeline
                     normals = ((GeometryProperty<MeshPropertyType>)type).Normals;
 
                     // Need to fix the indicies as the .fbx file XOR's a -1 to the indicie that ends a polygon face.
+                    // Also the indice list is structured in a triangle fan sectioned list (A combination of triangle fans).
+                    // We need to remake the indice list as a triangle strip.
                     for (int q = 0; q < vertIndex.Count; q++)
                     {
                         if (vertIndex[q] < 0)
-                            vertIndex[q] = (vertIndex[q] * -1) - 1;
+                        {
+                            // We can do this as the fbx file will only have this XOR'd section
+                            // at the end of a face with 3 vertices or more.
+                            xnaIndList.Add(vertIndex[q - 2]);
+                            xnaIndList.Add(vertIndex[q - 1]);
+                            xnaIndList.Add((vertIndex[q] * -1) - 1);
+                        }
+                        else
+                            xnaIndList.Add(vertIndex[q]);
                     }
+
+                    vertIndex = xnaIndList;
                 }
             }
 
-            return new ANSKModelContent(verts, vertIndex, uvs, uvIndex, edges, normals, tag);
+            return new ANSKModelContent(verts, vertIndex, uvs, uvIndex, edges, normals, skele, tag);
         }
 
         [DisplayName("ANSK Blend Shape Import")]

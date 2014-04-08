@@ -17,56 +17,29 @@ sampler2D modelTextureSampler = sampler_state
 
 struct VSBasicInput
 {
-    float4 pos : SV_Position;
-	//float4 color : COLOR0;
-	float2 texCoor : TEXCOORD0;
-	float3 normal : NORMAL;
-	int4   indices  : BLENDINDICES0;
-    float4 weights  : BLENDWEIGHT0;
-	int boneCount : BLENDINDICES1;
+    float4 pos : POSITION0;
+	float4 texCoor : COLOR0;
 };
 
 struct VSBasicOutput
 {
-	float4 pos : SV_Position;
-	//float2 texCoor: TEXCOORD0;
+	float4 pos : POSITION0;
+	float4 color : COLOR0;
 };
-
-void Skin(inout VSBasicInput vin)
-{
-    float4x3 skinning = 0;
-
-    [unroll]
-    //for (int i = 0; i < vin.boneCount; i++)
-	for (int i = 0; i < 1; i++)
-    {
-        skinning += bones[vin.indices[i]] * vin.weights[i];
-    }
-
-    vin.pos.xyz = mul(vin.pos, skinning);
-}
 
 VSBasicOutput VSBasic(VSBasicInput input)
 {
     VSBasicOutput output;
 
-	Skin(input);
-
     output.pos = mul(input.pos, worldProj);
-	//output.pos = input.pos;
-	//output.texCoor = input.texCoor;
+	output.color = input.texCoor;
 
     return output;
 }
 
 float4 PSBasic(VSBasicOutput input) : COLOR0
 {
-	//float4 texColour = tex2D(modelTextureSampler, input.texCoor);
-	//texColour.a = 1;
-	
-	//return texColour;
-	return float4(1,1,0,1);
-	//return input.color;
+	return float4(input.color);
 }
 
 VertexShader VSArray[1]=

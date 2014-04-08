@@ -1,2 +1,3 @@
 Content\CubeTest.xnb
 Content\Effects\AnimatableModel.xnb
+Content\Effects\PoopTest.xnb

@@ -20,7 +20,7 @@ namespace ModelAnimationLibrary
         {
             _aac = new AAC();
 
-            _skin = model.TagData.SkinData;
+            //_skin = model.TagData.SkinData;
 
             /*if (data.BlendShapes.Count > 0)
             {
